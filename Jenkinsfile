@@ -14,17 +14,22 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat "mvn clean package"
+                bat 'mvn clean package'
             }            
         }
         stage('Test') {
             steps {
-                bat "mvn test"
+                bat 'mvn test'
             }            
         }
         stage('Code Coverage') {
         	steps {
         	    jacoco()
+        	}
+		}
+        stage('Code Static Analysis') {
+        	steps {
+        	    bat 'pmd:pmd checkstyle:checkstyle spotbugs:spotbugs -X'
         	}
 		}
         stage('Deliver') {
