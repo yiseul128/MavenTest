@@ -29,7 +29,7 @@ pipeline {
 		}
         stage('Code Static Analysis') {
         	steps {
-        	    bat 'pmd:pmd checkstyle:checkstyle spotbugs:spotbugs -X'
+        	    bat 'mvn pmd:pmd checkstyle:checkstyle spotbugs:spotbugs -X'
         	}
 		}
         stage('Deliver') {
