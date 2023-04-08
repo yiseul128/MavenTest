@@ -9,7 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
 steps:
 - task: Maven@4
   name: 'CodeCoverageAndAnalysis'
@@ -19,6 +18,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
