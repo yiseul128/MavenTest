@@ -41,5 +41,12 @@ pipeline {
                 }
             }            
         }
+        stage('Deploy to DEV') {
+            steps {
+                script {
+                    bat 'docker.image("dew0135/maven-test:%BUILD_ID%").run("-p 8081:8081 --name maven-test")'
+                }
+            }
+        }
     }
 }
