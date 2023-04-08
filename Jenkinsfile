@@ -22,6 +22,11 @@ pipeline {
                 bat "mvn test"
             }            
         }
+        stage('Code Coverage') {
+        	steps {
+        	    jacoco()
+        	}
+		}
         stage('Deliver') {
         	steps {
         		script {
