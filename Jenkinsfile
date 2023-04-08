@@ -44,8 +44,17 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                 script {
-                	bat 'docker container stop maven-test'
-                	bat 'docker container rm maven-test'
+                	bat '''
+						for /f %%i in ('docker ps -qf "name=^maven-test"') do set containerId=%%i
+						echo %containerId%
+						If "%containerId%" == "" (
+						  echo "No Container running"
+						) ELSE (
+						  docker stop %ContainerId%
+						  docker rm -f %ContainerId%
+						)
+						'''
+
                     docker.image("dew0135/maven-test:${BUILD_ID}").run("-p 8081:8081 --name maven-test")
                 }
             }
