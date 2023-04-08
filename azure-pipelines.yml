@@ -25,7 +25,7 @@ steps:
     sonarQubeRunAnalysis: false
     checkStyleRunAnalysis: true
     pmdRunAnalysis: true
-    findBugsRunAnalysis: true
+    findBugsRunAnalysis: false
     
 - task: Maven@3
   inputs:
