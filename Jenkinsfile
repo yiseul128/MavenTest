@@ -44,7 +44,9 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                 script {
-                    docker.image("dew0135/maven-test:${BUILD_ID}").run("-p 8081:8081 --name maven-test-${BUILD_ID}")
+                	bat 'docker container stop maven-test'
+                	bat 'docker container rm maven-test'
+                    docker.image("dew0135/maven-test:${BUILD_ID}").run("-p 8081:8081 --name maven-test")
                 }
             }
         }
